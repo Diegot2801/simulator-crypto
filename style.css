@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color: #1a1a2e; /* Dark background */
+    --card-bg: #1f2847; /* Slightly lighter card background */
+    --text-color: #e0e0e0; /* Light text */
+    --accent-color: #007bff; /* Blue accent, like Trii's buttons */
+    --success-color: #28a745; /* Green for buy */
+    --danger-color: #dc3545; /* Red for sell */
+    --border-color: #2e3a59;
+    --font-family: 'Inter', sans-serif;
+    --hover-bg: #2a3556;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    margin: 30px 20px;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #1a1a2e; /* Slightly darker header */
+}
+
+.app-header .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.app-header .user-info span {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Main Content */
+.main-content {
+    padding: 30px 40px;
+}
+
+/* Portfolio Summary */
+.portfolio-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    justify-content: space-around; /* Distribute cards */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.portfolio-summary .card {
+    background-color: var(--bg-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex: 1; /* Allow cards to grow */
+    min-width: 280px; /* Minimum width for cards */
+    text-align: center;
+}
+
+.portfolio-summary .card h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.portfolio-summary .card p {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Sections */
+.crypto-list, .my-holdings {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.crypto-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Crypto Card */
+.crypto-card {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crypto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.crypto-card h4 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.crypto-card .price {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--success-color);
+    margin-bottom: 15px;
+}
+
+.crypto-card .holdings-info {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.crypto-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.crypto-card button {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: 600;
+}
+
+.crypto-card .buy-btn {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.crypto-card .buy-btn:hover {
+    background-color: #0056b3;
+}
+
+.crypto-card .sell-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.crypto-card .sell-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* No Holdings Message */
+#noHoldingsMessage {
+    text-align: center;
+    grid-column: 1 / -1; /* Span across all columns */
+    font-style: italic;
+    color: #999;
+    padding: 20px;
+}
+
+/* Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+    color: var(--accent-color);
+    margin-top: 0;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.modal-content #modalPrice {
+    font-weight: 700;
+    color: var(--success-color);
+}
+
+.modal-content input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1.1em;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.modal-content .transaction-info {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.modal-content #confirmTransactionBtn.buy {
+    background-color: var(--accent-color);
+    color: white;
+}
+.modal-content #confirmTransactionBtn.buy:hover {
+    background-color: #0056b3;
+}
+.modal-content #confirmTransactionBtn.sell {
+    background-color: var(--danger-color);
+    color: white;
+}
+.modal-content #confirmTransactionBtn.sell:hover {
+    background-color: #a71d2a;
+}
+
+.modal-content .error-message {
+    color: var(--danger-color);
+    font-weight: 600;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--text-color);
+    font-size: 2.5em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-header {
+        padding: 15px 20px;
+    }
+    .app-header .logo {
+        font-size: 1.5em;
+    }
+    .app-header .user-info span {
+        font-size: 1em;
+    }
+    .main-content {
+        padding: 20px;
+    }
+    .portfolio-summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .portfolio-summary .card {
+        min-width: unset;
+        width: 100%;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    .crypto-cards-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+    }
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .modal-content h3 {
+        font-size: 1.5em;
+    }
+}
